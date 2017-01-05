@@ -31,7 +31,7 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="">Update profile</a></li>
+                        <li><a href="/profile">Profile</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ url('/logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</a></li>
                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

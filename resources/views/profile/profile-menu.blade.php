@@ -1,12 +1,12 @@
 <div class="col-sm-3">
     <ul class="nav nav-pills nav-stacked nav-email shadow mb-20">
         <li class="active">
-            <a href="#mail-inbox.html">
-                <i class="fa fa-inbox"></i> Inbox  <span class="label pull-right">7</span>
+            <a href="/profile">
+                <i class="fa fa-inbox"></i> Основная инфа
             </a>
         </li>
         <li>
-            <a href="#mail-compose.html"><i class="fa fa-envelope-o"></i> Send Mail</a>
+            <a href="/profile/edit"><i class="glyphicon glyphicon-pencil"></i> Редактировать компанию</a>
         </li>
         <li>
             <a href="#"><i class="fa fa-certificate"></i> Important</a>

@@ -14,7 +14,6 @@ class Profile extends Model
         $lang = DB::select('select * from users LEFT JOIN lang ON users.lang = lang.alpha2 where id = ?',[$id])[0];
         $country = $country['name'];
         $lang = $lang['name'];
-        $all = array($country,$lang);
-        return $all;
+        return array($country,$lang);
     }
 }

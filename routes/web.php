@@ -14,4 +14,5 @@ Route::get('/register/countrylist', 'Auth\RegisterController@countrylist');
 
 Auth::routes();
 Route::get('/profile', 'ProfileController@index');
+Route::get('/profile/edit', 'ProfileController@edit');
 
