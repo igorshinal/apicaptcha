@@ -12,9 +12,11 @@ class ApiController extends Controller
         $image = new api;
         $random = rand(1,2);
         switch ($random){
-            case 1: return view('common')->with($image->createRandomCaptcha()); break;
-            case 2: return view('common')->with($image->createRandomCaptcha()); break;
+            case 1: return $image->createRandomCaptcha(); break;
+            case 2: return $image->createRandomCaptcha(); break;
         }
 
     }
+
+
 }

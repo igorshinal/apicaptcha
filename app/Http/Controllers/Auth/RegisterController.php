@@ -6,6 +6,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -50,7 +51,12 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
+            'phone' => '',
             'password' => 'required|min:6|confirmed',
+            'company_name' => 'required',
+            'lang' => 'required|min:2|max:2',
+            'country' => 'required|min:2|max:2',
+            'website' => 'required',
         ]);
     }
 
@@ -65,7 +71,25 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
+            'company_name' => $data['company_name'],
+            'lang' => $data['lang'],
+            'country' => $data['country'],
+            'website' => $data['website'],
         ]);
+
+    }
+
+    public function langlist()
+    {
+        $results = DB::select('select * from lang ORDER BY name asc');
+        return json_encode($results);
+    }
+
+    public function countrylist()
+    {
+        $results = DB::select('select * from countries ORDER BY name asc');
+        return json_encode($results);
     }
 }

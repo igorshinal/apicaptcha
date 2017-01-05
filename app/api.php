@@ -8,7 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class api extends Model
 {
-
+//    public function parse()
+//    {
+//        $json = file_get_contents('http://country.io/names.json');
+//        $json = json_decode($json,true);
+//        foreach ($json as $key => $value)
+//        {
+//            DB::insert('insert into countries (code,name) values (?, ?)', [$key, $value]);
+//        }
+//    }
     public function createRandomCaptcha()
     {
 
