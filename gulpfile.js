@@ -1,6 +1,5 @@
-const elixir = require('laravel-elixir');
-
-require('laravel-elixir-vue-2');
+var elixir = require('laravel-elixir');
+require('es6-promise').polyfill();
 
 /*
  |--------------------------------------------------------------------------
@@ -12,6 +11,15 @@ require('laravel-elixir-vue-2');
  | file for our application, as well as publishing vendor resources.
  |
  */
+
+
 elixir(function(mix) {
-    mix.sass('common.scss');
+    mix.sass(['common.scss'], 'public/assets/css/commom.css')
+        .sass( ['ccc.scss'], 'public/assets/css/ccc.scss');
 });
+
+elixir(function(mix) {
+    mix.scripts(['common.js'], 'public/js/common.js');
+});
+
+

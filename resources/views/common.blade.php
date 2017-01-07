@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <p>Здесь что то на подобии доки по установки капчи</p>
+    <p>Здесь что то придумаем</p>
 
 
 
@@ -13,3 +13,4 @@
 @section('scripts')
     <script type="application/javascript" src={{ URL::asset('js/common.js') }}></script>
 @endsection
+
