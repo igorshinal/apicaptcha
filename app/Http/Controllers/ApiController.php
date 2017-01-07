@@ -17,6 +17,7 @@ class ApiController extends Controller
         }
 
     }
+    
     public function checkCaptcha(Request $request)
     {
         $id = $request->input('id');

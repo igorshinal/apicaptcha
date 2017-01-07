@@ -65,7 +65,6 @@ class api extends Model
         $response = json_encode(['captcha_link' => $path, 'captcha_id' => $hash]);
         return $response;
     }
-
     public function createCompanyCaptcha()
     {
         $results = DB::select('select company_code from company ORDER BY RAND() LIMIT 1');

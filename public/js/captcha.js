@@ -10,7 +10,6 @@ $( document ).ready(function() {
             });
         },
     });
-    
     $(".check").submit(function(e) {
         e.preventDefault();
         var id = $('.captcha').data('id');
