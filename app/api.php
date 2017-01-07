@@ -8,15 +8,16 @@ use Illuminate\Support\Facades\DB;
 
 class api extends Model
 {
-//    public function parse()
-//    {
-//        $json = file_get_contents('http://country.io/names.json');
-//        $json = json_decode($json,true);
-//        foreach ($json as $key => $value)
-//        {
-//            DB::insert('insert into countries (code,name) values (?, ?)', [$key, $value]);
-//        }
-//    }
+    public function check($id, $text)
+    {
+        DB::setFetchMode(\PDO::FETCH_ASSOC);
+        $results = DB::select('select word from api where hash = ? LIMIT 1',[$id])[0];
+        if($results['word'] == $text)
+            return 'true';
+        else
+            return 'false';
+    }
+
     public function createRandomCaptcha()
     {
 
@@ -59,7 +60,7 @@ class api extends Model
         $manager = new ImageManager(array('driver' => 'gd'));
         $image = $manager->make($img);
         $image->save('images/generated/'.$hash.'.png', 100);
-        $path =  $_SERVER['SERVER_NAME'].'/images/generated/'.$hash.'.png';
+        $path =  '/images/generated/'.$hash.'.png';
         DB::insert('insert into api (hash, word, created_at, link) values (?, ?, now(), ?)', [$hash, $randStr,$path]);
         $response = json_encode(['captcha_link' => $path, 'captcha_id' => $hash]);
         return $response;
@@ -120,7 +121,7 @@ class api extends Model
             $manager = new ImageManager(array('driver' => 'gd'));
             $image = $manager->make($img);
             $image->save('images/generated/'.$hash.'.png', 100);
-            $path =  $_SERVER['SERVER_NAME'].'/images/generated/'.$hash.'.png';
+            $path =  '/images/generated/'.$hash.'.png';
             DB::insert('insert into api (hash, word, created_at, link) values (?, ?, now(), ?)', [$hash, $randStr,$path]);
             $response = json_encode(['captcha_link' => $path, 'captcha_id' => $hash]);
             return $response;

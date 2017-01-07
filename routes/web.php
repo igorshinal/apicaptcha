@@ -1,5 +1,4 @@
 <?php
-
 Route::get('/', function () {
     return view('install');
 });
@@ -7,11 +6,14 @@ Route::get('/', function () {
 Route::get('company', function () {
     return view('company');
 });
-Route::get('/api/get/captcha', 'ApiController@getCaptcha');
 
+//API
+Route::get('/api/get/captcha', 'ApiController@getCaptcha');
+Route::post('/api/check/captcha', 'ApiController@checkCaptcha');
+//Register
 Route::get('/register/langlist', 'Auth\RegisterController@langlist');
 Route::get('/register/countrylist', 'Auth\RegisterController@countrylist');
-
+//Profile
 Auth::routes();
 Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/edit', 'ProfileController@edit');
