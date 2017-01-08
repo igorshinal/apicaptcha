@@ -1,0 +1,83 @@
+.content {
+  display: none;
+  position: absolute;
+  right: 7px;
+  margin-left: 7px;
+  margin-top: 4px;
+}
+
+.card .card-action {
+  border-top: 1px solid white;
+}
+
+.card .card-content {
+  padding: 30px 30px 0 30px !important;
+}
+
+.card .card-content img {
+  border-radius: 50%;
+}
+
+.blue-grey.darken-1 {
+  background-color: #00bcd4 !important;
+}
+
+.card-action {
+  text-align: center;
+}
+
+.wrap-email {
+  margin: 0 70px !important;
+  padding-bottom: 15px;
+}
+
+.wrap-email .inline {
+  display: inline-block !important;
+}
+
+.wrap-email .email {
+  position: absolute;
+}
+
+nav {
+  background-color: #00bcd4;
+}
+
+nav i {
+  line-height: inherit !important;
+}
+
+.brand-logo {
+  margin-left: 10px;
+}
+
+.btn-padding {
+  margin-right: 8px;
+}
+
+@media screen and (max-width: 300px) {
+  .wrap-email {
+    margin: 0 50px !important;
+  }
+}
+
+@media screen and (max-width: 260px) {
+  .wrap-email {
+    margin: 0 55px !important;
+  }
+  .email {
+    font-size: 4vw;
+  }
+  .inline {
+    font-size: 6vw !important;
+  }
+}
+
+@media screen and (max-width: 200px) {
+  .wrap-email {
+    margin: 0 23px !important;
+  }
+  .email {
+    font-size: 11px;
+  }
+}

@@ -1,48 +1,57 @@
-
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href={{ url('/')}}>Apicapcha</a>
+<nav>
+    <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>ApiCapcha</a>
+    @if (Auth::guest())
+        <div class="right">
+            <a href="{{ url('/login') }}" class="waves-effect waves-light btn btn-padding"><i
+                        class="material-icons left">input</i>Войти</a>
         </div>
-        <div class="collapse navbar-collapse">
-
-            <ul class="nav navbar-nav" style="margin-left: 40%">
-                <li><a href={{ url('/')}}>Captcha install</a></li>
-
-                <li><a href={{ url('company')}}>For company</a></li>
-            </ul>
-
-                    @if (Auth::guest())
-                <div class="dropdown  navbar-right" style="margin: 7.5px -15px;">
-                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Sign in/Sign up
-                        <span class="caret"></span>
-                    </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="{{ url('/register') }}">Sign up</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{ url('/login') }}">Sign in</a></li>
-                    </ul>
-                </div>
-                    @else
-                <div class="dropdown  navbar-right" style="margin: 7.5px -15px;">
-                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        {{ Auth::user()->name }}
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="/profile">Profile</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{ url('/logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</a></li>
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                        </ul>
+    @else
+        <div class="right">
+            <a class="dropdown-btn btn btn waves-effect waves-light btn-padding">Account</a>
+            <div class="row">
+                <div class="content">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <img class="responsive-img"
+                                 src="{{ URL::asset('images/emotsija-jumor-korporatsija-monstrov-kartinka-Favim.ru-3407447.jpg') }}">
+                        </div>
+                        <div class="row wrap-email">
+                            <i class="material-icons inline">email</i>
+                            <span class="email">{{ Auth::user()->email }}</span>
+                        </div>
+                        <div class="card-action">
+                            <a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                               class="waves-effect waves-light btn">logout</a>
+                            <a href="{{ url('/profile') }}" class="waves-effect waves-light btn">profile</a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
                     </div>
-                    @endif
+                </div>
+            </div>
         </div>
-    </div>
+    @endif
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

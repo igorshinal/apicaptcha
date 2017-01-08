@@ -1,6 +1,6 @@
 @extends('templates.default')
 @section('stylesheets')
-    <link href={{ URL::asset('css/common.css') }} rel="stylesheet">
+    <link href={{ URL::asset('') }} rel="stylesheet">
 @endsection
 
 @section('content')
@@ -11,6 +11,6 @@
 
 @endsection
 @section('scripts')
-    <script type="application/javascript" src={{ URL::asset('js/common.js') }}></script>
+    <script type="application/javascript" src={{ URL::asset('') }}></script>
 @endsection
 

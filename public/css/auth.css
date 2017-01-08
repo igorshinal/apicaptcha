@@ -1,0 +1,29 @@
+.medium-small {
+  text-align: center;
+}
+
+.medium-small a {
+  color: #26a69a;
+}
+
+.title-auth {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.title-auth h4 {
+  color: #26a69a;
+}
+
+.common-auth label {
+  color: #26a69a;
+}
+
+.button-auth {
+  margin-top: 34px !important;
+}
+
+.help-block {
+  color: #26a69a;
+}
+
