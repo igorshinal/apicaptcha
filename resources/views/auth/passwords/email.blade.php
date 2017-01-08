@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col z-depth-4 common-auth">
             <div class="title-auth">
-                <h4>Reset password</h4>
+                <h5>Reset password</h5>
                 <div>
                     @if ($errors->has('email'))
                         <span class="help-block">
