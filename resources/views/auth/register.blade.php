@@ -1,5 +1,9 @@
 @extends('templates.auth')
 
+@section('stylesheets')
+    <link rel="stylesheet" href={{ URL::asset('css/helper-for-registration-form-mobile.css') }}>
+@endsection
+
 @section('content')
 
 
@@ -163,7 +167,7 @@
 
 
 
-<div class="row">
+<div class="row valign">
     <div class="col z-depth-4 common-auth">
         <div class="title-auth">
             <h5>Registration</h5>
@@ -279,14 +283,14 @@
             <div class="row">
                 <div class="input-field{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                     <input id="password-confirm" type="password" value="{{ old('email') }}" name="password_confirmation" class="validate">
-                    <label class="active" for="password_confirmation">password_confirmation</label>
+                    <label class="active" for="password_confirmation">Password confirmation</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field{{ $errors->has('company_name') ? ' has-error' : '' }}">
                     <input id="company_name" type="text" class="form-control" name="company_name" class="validate">
 
-                    <label class="active" for="company_name">company name</label>
+                    <label class="active" for="company_name">Company name</label>
                 </div>
             </div>
             <div class="row">

@@ -18,6 +18,10 @@
 .common-auth label {
   color: #26a69a;
 }
+.common-auth {
+  background: white;
+}
+
 
 .button-auth {
   margin-top: 34px !important;
@@ -25,5 +29,9 @@
 
 .help-block {
   color: #26a69a;
+}
+.valign-wrapper {
+  background-color: #00bcd4;
+  height: 100vh;
 }
 

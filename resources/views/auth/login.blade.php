@@ -1,7 +1,10 @@
 @extends('templates.auth')
+@section('stylesheets')
+    <link rel="stylesheet" href={{ URL::asset('css/auth.css') }}>
+@endsection
 
 @section('content')
-    <div class="row">
+    <div class="row valign">
         <div class="col z-depth-4 common-auth">
             <div class="title-auth">
                 <h5>Login</h5>

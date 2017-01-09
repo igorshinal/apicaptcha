@@ -1,0 +1,41 @@
+@media screen and (min-width: 760px) {
+    .valign-wrapper {
+        height: 100vh;
+    }
+}
+
+.medium-small {
+    text-align: center;
+}
+
+.medium-small a {
+    color: #26a69a;
+}
+
+.title-auth {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.title-auth h5 {
+    color: #26a69a;
+}
+
+.common-auth label {
+    color: #26a69a;
+}
+.common-auth {
+    background: white;
+}
+
+
+.button-auth {
+    margin-top: 34px !important;
+}
+
+.help-block {
+    color: #26a69a;
+}
+.valign-wrapper {
+    background-color: #00bcd4;
+}
