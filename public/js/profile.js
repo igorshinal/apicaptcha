@@ -8,9 +8,11 @@ $( document ).ready(function() {
         var file_data = $('#background').prop('files')[0];
         var logo_data = $('#logo').prop('files')[0];
         var word = $('#word').val();
+        var dfont = $(".dfont:checked").val();
         //добавляем в форму
         form_data.append('textcolor', textcolor);
         form_data.append('font', font);
+        form_data.append('dfont', dfont);
         form_data.append('background', file_data);
         form_data.append('logo', logo_data);
         form_data.append('word', word);

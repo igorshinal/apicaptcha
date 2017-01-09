@@ -24,7 +24,7 @@ class Profile extends Model
             return false;
 
         DB::setFetchMode(\PDO::FETCH_ASSOC);
-        $captcha_id = DB::table('company')->insertGetId(array('user_id' => $id, 'textcolor' => 'ffffff', 'font' => 'fonts/bellb.ttf'));
+        $captcha_id = DB::table('company')->insertGetId(array('user_id' => $id, 'textcolor' => 'ffffff', 'font' => 'fonts/comic.ttf'));
         DB::table('users')
             ->where('id', $id)
             ->update(['captcha_id' => $captcha_id]);
@@ -73,7 +73,7 @@ class Profile extends Model
         return;
     }
 
-    public function saveChanges($user_id,$word,$files,$textcolor)
+    public function saveChanges($user_id,$word,$files,$textcolor,$dfont)
     {
         $manager = new ImageManager(array('driver' => 'gd'));
         DB::setFetchMode(\PDO::FETCH_ASSOC);
@@ -92,11 +92,15 @@ class Profile extends Model
             {
                 $info['font_error'] = 'Не известный шрифт. Допускается только .ttf и .otf';
                 $font = $results['font'];
+                if($dfont != 'undefined')
+                    $font = 'fonts/'.$dfont;
             }
         }
         else
         {
             $font = $results['font'];
+            if($dfont != 'undefined')
+                $font = 'fonts/'.$dfont;
         }
 
         //Проверки загрузки картинки бэкграуна

@@ -38,6 +38,8 @@
                         <div id="logo_error"></div><br><br>
                         <input type="color" id="textcolor" value="#{{ $color }}"><br><br>
                         Шрифт(ttf,otf)<input type="file" id="font"><br>
+                        <input type="radio" name="dfont" class="dfont" value="comic.ttf"> comic.ttf<br>
+                        <input type="radio" name="dfont" class="dfont" value="california.ttf"> california.ttf<br>
                         <div id="font_error"></div><br><br>
                         <img src="{{ $draw }}?<?php echo time(); ?>" id="result">
                         <button id="save">Сохранить изменения</button>

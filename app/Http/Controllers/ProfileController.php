@@ -18,6 +18,13 @@ class ProfileController extends Controller
         return view('profile.profile');
     }
 
+    public function create()
+    {
+        $profile = new Profile;
+        $profile->createUserCaptcha(Auth::id());
+        return redirect('profile/captcha/');
+    }
+
     public function captcha()
     {
         $profile = new Profile;
@@ -37,21 +44,15 @@ class ProfileController extends Controller
             'color' => $color,
         ]);
     }
-    
-    public function create()
-    {
-        $profile = new Profile;
-        $profile->createUserCaptcha(Auth::id());
-        return redirect('profile/captcha/');
-    }
 
     public function save(Request $request)
     {
         $word = $request->input('word');
         $textcolor = $request->input('textcolor');
+        $dfont = $request->input('dfont');
         $user_id = Auth::id();
         $profile = new Profile;
-        $info = $profile->saveChanges($user_id,$word,$_FILES,$textcolor);
+        $info = $profile->saveChanges($user_id,$word,$_FILES,$textcolor,$dfont);
         $draw = $profile->draw(Auth::id());
         $info['draw'] = $draw;
         return json_encode($info);
