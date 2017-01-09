@@ -35,9 +35,19 @@
                         Бэкграунд капчи(200x50)<img src="{{ $background }}?<?php echo time(); ?>" id="showbackground"><input type="file" id="background"><br>
                     <div id="background_error"></div><br><br>
                         Логотип(50x50)<img src="{{ $logo }}?<?php echo time(); ?>" id="showlogo"><input type="file" id="logo"><br>
+                        Позиция:<br>
+                        <input type="radio" name="logopos" class="logopos" value="0">По средине слева<br>
+                        <input type="radio" name="logopos" class="logopos" value="5">По средине справа<br>
+                        <input type="radio" name="logopos" class="logopos" value="6">По средине<br>
+                        <input type="radio" name="logopos" class="logopos" value="1">Справа внизу<br>
+                        <input type="radio" name="logopos" class="logopos" value="2">Слева внизу<br>
+                        <input type="radio" name="logopos" class="logopos" value="3">Слева вверху<br>
+                        <input type="radio" name="logopos" class="logopos" value="4">Справа вверху<br>
+
                         <div id="logo_error"></div><br><br>
                         <input type="color" id="textcolor" value="#{{ $color }}"><br><br>
                         Шрифт(ttf,otf)<input type="file" id="font"><br>
+                        Стандартные шрифты:<br>
                         <input type="radio" name="dfont" class="dfont" value="comic.ttf"> comic.ttf<br>
                         <input type="radio" name="dfont" class="dfont" value="california.ttf"> california.ttf<br>
                         <div id="font_error"></div><br><br>

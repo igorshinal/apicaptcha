@@ -32,7 +32,8 @@ class ProfileController extends Controller
         $word = $profile->getWord(Auth::id());
         $background = $profile->getBackground(Auth::id());
         $logo = $profile->getLogo(Auth::id());
-        $draw = $profile->draw(Auth::id());
+        $logopos = $profile->getLogopos(Auth::id());
+        $draw = $profile->draw(Auth::id(),$logopos);
         $color = $profile->getColor(Auth::id());
         return view('profile.profile-captcha', [
             'cid' => $captcha,
@@ -50,10 +51,11 @@ class ProfileController extends Controller
         $word = $request->input('word');
         $textcolor = $request->input('textcolor');
         $dfont = $request->input('dfont');
+        $logopos = $request->input('logopos');
         $user_id = Auth::id();
         $profile = new Profile;
         $info = $profile->saveChanges($user_id,$word,$_FILES,$textcolor,$dfont);
-        $draw = $profile->draw(Auth::id());
+        $draw = $profile->draw(Auth::id(), $logopos);
         $info['draw'] = $draw;
         return json_encode($info);
     }

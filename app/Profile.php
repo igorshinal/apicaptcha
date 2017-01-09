@@ -62,6 +62,17 @@ class Profile extends Model
         return;
     }
 
+    public function getLogopos($id)
+    {
+        DB::setFetchMode(\PDO::FETCH_ASSOC);
+        if($this->getUserCaptcha($id) != 0)
+        {
+            $logopos = DB::select('select logopos from company where user_id = ?',[$id])[0];
+            return $logopos['logopos'];
+        }
+        return;
+    }
+
     public function getColor($id)
     {
         DB::setFetchMode(\PDO::FETCH_ASSOC);
@@ -157,10 +168,12 @@ class Profile extends Model
         return $info;
     }
     
-    public function draw($id)
+    public function draw($id, $logopos = 0)
     {
         DB::setFetchMode(\PDO::FETCH_ASSOC);
         @$results = DB::select('select * from company where user_id = ? LIMIT 1',[$id])[0];
+        if($logopos == 'undefined')
+            $logopos = $results['logopos'];
         if($results['background'] == '')
             return;
         $noise = $results['background'];
@@ -171,10 +184,68 @@ class Profile extends Model
             $img = imagecreatefrompng($noise);
         if($results['logo'] != '')
         {
-            $logo_size = getimagesize($results['logo']);
-            $logo = imagecreatefrompng($results['logo']);
-            $location_x = 5;
-            $location_y = 0;
+            $manager = new ImageManager(array('driver' => 'gd'));
+            $realpath = realpath($results['logo']);
+
+            switch($logopos)
+            {
+                case 0:
+                    $image = $manager->make($realpath)->resize(50, 50);
+                    $image->save('images/temp/'.$id.'temp.png', 100);
+                    $location_x = 1;
+                    $location_y = 1;
+                    break;
+                case 1:
+                    $image = $manager->make($realpath)->resize(25, 25);
+                    $image->save('images/temp/'.$id.'temp.png', 100);
+                    $location_x = 174;
+                    $location_y = 24;
+                    break;
+                case 2:
+                    $image = $manager->make($realpath)->resize(25, 25);
+                    $image->save('images/temp/'.$id.'temp.png', 100);
+                    $location_x = 1;
+                    $location_y = 24;
+                    break;
+                case 3:
+                    $image = $manager->make($realpath)->resize(25, 25);
+                    $image->save('images/temp/'.$id.'temp.png', 100);
+                    $location_x = 1;
+                    $location_y = 1;
+                    break;
+                case 4:
+                    $image = $manager->make($realpath)->resize(25, 25);
+                    $image->save('images/temp/'.$id.'temp.png', 100);
+                    $location_x = 174;
+                    $location_y = 1;
+                    break;
+                case 5:
+                    $image = $manager->make($realpath)->resize(50, 50);
+                    $image->save('images/temp/'.$id.'temp.png', 100);
+                    $location_x = 149;
+                    $location_y = 1;
+                    break;
+                case 6:
+                    $image = $manager->make($realpath)->resize(50, 50);
+                    $image->save('images/temp/'.$id.'temp.png', 100);
+                    $location_x = 75;
+                    $location_y = 1;
+                    break;
+                default:
+                    $image = $manager->make($realpath)->resize(50, 50);
+                    $image->save('images/temp/'.$id.'temp.png', 100);
+                    $location_x = 5;
+                    $location_y = 0;
+                    break;
+            }
+            DB::table('company')
+                ->where('user_id', $id)
+                ->update([
+                    'logopos' => $logopos,
+                ]);
+
+            $logo_size = getimagesize('images/temp/'.$id.'temp.png');
+            $logo = imagecreatefrompng('images/temp/'.$id.'temp.png');
             $offset_src_x = 0;
             $offset_src_y = 0;
             $src_width = $logo_size[0];

@@ -9,6 +9,8 @@ $( document ).ready(function() {
         var logo_data = $('#logo').prop('files')[0];
         var word = $('#word').val();
         var dfont = $(".dfont:checked").val();
+        var logopos = $(".logopos:checked").val();
+
         //добавляем в форму
         form_data.append('textcolor', textcolor);
         form_data.append('font', font);
@@ -16,6 +18,7 @@ $( document ).ready(function() {
         form_data.append('background', file_data);
         form_data.append('logo', logo_data);
         form_data.append('word', word);
+        form_data.append('logopos', logopos);
 
             $.ajax({
                 url: '/profile/save',
