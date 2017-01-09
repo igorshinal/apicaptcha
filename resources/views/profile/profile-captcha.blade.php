@@ -32,16 +32,13 @@
                     </form>
                     @else
                     <input type="text" placeholder="Слово капчи" value="{{ $word }}" id="word"><br><br>
-                        Ресайз при новой загрузке!
-                        <input type="text" size="3" id="background_width" placeholder="width" value="{{ $background_width }}">
-                        <input type="text" size="3" id="background_height" placeholder="height" value="{{ $background_height }}">
-                        Бэкграунд капчи<img src="{{ $background }}?<?php echo time(); ?>" id="showbackground"><input type="file" id="background"><br>
-                        Ресайз при новой загрузке!
-                        <input type="text" size="3" id="logo_width" placeholder="width" value="{{ $logo_width }}">
-                        <input type="text" size="3" id="logo_height" placeholder="height" value="{{ $logo_height }}">
-                        Логотип<img src="{{ $logo }}?<?php echo time(); ?>" id="showlogo"><input type="file" id="logo"><br><br>
+                        Бэкграунд капчи(200x50)<img src="{{ $background }}?<?php echo time(); ?>" id="showbackground"><input type="file" id="background"><br>
+                    <div id="background_error"></div><br><br>
+                        Логотип(50x50)<img src="{{ $logo }}?<?php echo time(); ?>" id="showlogo"><input type="file" id="logo"><br>
+                        <div id="logo_error"></div><br><br>
                         <input type="color" id="textcolor" value="#{{ $color }}"><br><br>
-                        Шрифт<input type="file" id="font"><br><br>
+                        Шрифт(ttf,otf)<input type="file" id="font"><br>
+                        <div id="font_error"></div><br><br>
                         <img src="{{ $draw }}?<?php echo time(); ?>" id="result">
                         <button id="save">Сохранить изменения</button>
                         <div class="status"></div>

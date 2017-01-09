@@ -1,33 +1,19 @@
 $( document ).ready(function() {
-
     $( "#save" ).on( "click", function() {
 
-            var form_data = new FormData();
-
-                var background_width = $('#background_width').val();
-                var background_height = $('#background_height').val();
-                var logo_width = $('#logo_width').val();
-                var logo_height = $('#logo_height').val();
-                var textcolor = $('#textcolor').val();
-
-
-                form_data.append('background_width', background_width);
-                form_data.append('background_height', background_height);
-                form_data.append('logo_width', logo_width);
-                form_data.append('logo_height', logo_height)
-                form_data.append('textcolor', textcolor);
-
-                var font = $('#font').prop('files')[0];
-                form_data.append('font', font);
-
-                var file_data = $('#background').prop('files')[0];
-                form_data.append('background', file_data);
-
-                var logo_data = $('#logo').prop('files')[0];
-                form_data.append('logo', logo_data);
-
-            var word = $('#word').val();
-            form_data.append('word', word);
+        //собираем все поля
+        var form_data = new FormData();
+        var textcolor = $('#textcolor').val();
+        var font = $('#font').prop('files')[0];
+        var file_data = $('#background').prop('files')[0];
+        var logo_data = $('#logo').prop('files')[0];
+        var word = $('#word').val();
+        //добавляем в форму
+        form_data.append('textcolor', textcolor);
+        form_data.append('font', font);
+        form_data.append('background', file_data);
+        form_data.append('logo', logo_data);
+        form_data.append('word', word);
 
             $.ajax({
                 url: '/profile/save',
@@ -47,25 +33,16 @@ $( document ).ready(function() {
                     $('#result').attr({
                         src: result.draw +'?'+new Date().getTime(),
                     });
-                    $('#background_width').val(result.background_width);
-                    $('#background_height').val(result.background_height);
-                    $('#logo_width').val(result.logo_width);
-                    $('#logo_height').val(result.logo_height);
 
-                    if(result.error)
-                    {
+                    //Ошибки
+                    $('#background_error').html(result.background_error);
+                    $('#logo_error').html(result.logo_error);
+                    $('#font_error').html(result.font_error);
+                    
                         $('.status').fadeIn();
-                        $('.status').html(result.error);
+                        $('.status').html('Сохранения изменены');
                         $('.status').delay(2500).fadeOut();
-                    }
-                    else
-                    {
-                        $('.status').fadeIn();
-                        $('.status').html('Сохранения изменены успешно');
-                        $('.status').delay(2500).fadeOut();
-                    }
                 }
             });
     });
-
 });

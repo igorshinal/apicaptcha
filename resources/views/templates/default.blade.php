@@ -20,7 +20,6 @@
             path: '/',
         });
     }
-
 </script>
 
     <!--Let browser know website is optimized for mobile-->
