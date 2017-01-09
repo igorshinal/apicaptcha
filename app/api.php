@@ -131,7 +131,7 @@ class api extends Model
         }
     }
 
-    function generate_random_code($nChars)
+    protected function generate_random_code($nChars)
     {
         $chars = 'abdefhknrstyz23456789';
         $length = $nChars;
@@ -145,12 +145,14 @@ class api extends Model
         shuffle ($array_mix);
         return implode("", $array_mix);
     }
-    function get_noise()
+
+    protected function get_noise()
     {
         $noise = array('images/1.png','images/2.png','images/3.png');
         return $noise[array_rand($noise)];
     }
-    function get_color($img,$noise)
+
+    protected function get_color($img,$noise)
     {
         if($noise == 'images/2.png' || $noise == 'images/3.png')
             return imagecolorallocate($img, 255, 255, 255);

@@ -54,8 +54,8 @@ class RegisterController extends Controller
             'phone' => '',
             'password' => 'required|min:6|confirmed',
             'company_name' => 'required',
-            'lang' => 'required|min:2|max:2',
-            'country' => 'required|min:2|max:2',
+            //'lang' => 'required|min:2|max:2',
+            //'country' => 'required|min:2|max:2',
             'website' => 'required',
         ]);
     }
@@ -74,22 +74,22 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
             'company_name' => $data['company_name'],
-            'lang' => $data['lang'],
-            'country' => $data['country'],
+            //'lang' => $data['lang'],
+            //'country' => $data['country'],
             'website' => $data['website'],
         ]);
 
     }
 
-    public function langlist()
-    {
-        $results = DB::select('select * from lang ORDER BY name asc');
-        return json_encode($results);
-    }
-
-    public function countrylist()
-    {
-        $results = DB::select('select * from countries ORDER BY name asc');
-        return json_encode($results);
-    }
+//    public function langlist()
+//    {
+//        $results = DB::select('select * from lang ORDER BY name asc');
+//        return json_encode($results);
+//    }
+//
+//    public function countrylist()
+//    {
+//        $results = DB::select('select * from countries ORDER BY name asc');
+//        return json_encode($results);
+//    }
 }
