@@ -10,7 +10,4 @@ $(function() {
         if($(e.target).closest(".content").length==0) $(".content").css("display","none");
 
     });
-}); // end of document ready
-
-
-//# sourceMappingURL=common.js.map
+});
