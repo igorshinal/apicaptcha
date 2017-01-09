@@ -174,7 +174,7 @@ class Profile extends Model
         @$results = DB::select('select * from company where user_id = ? LIMIT 1',[$id])[0];
         if($logopos == 'undefined')
             $logopos = $results['logopos'];
-        if($results['background'] == '')
+        if($results['background'] == '' || !file_exists($results['background']) )
             return;
         $noise = $results['background'];
         $ext = explode('.',$noise)[1];
@@ -182,7 +182,18 @@ class Profile extends Model
             $img = imagecreatefromjpeg($noise);
         else
             $img = imagecreatefrompng($noise);
-        if($results['logo'] != '')
+
+
+        //КРУЖОЧКИ ШУМЫ
+//        $linenum = rand(5, 10);
+//        for ($i=0; $i<$linenum; $i++)
+//        {
+//            $color1 = imagecolorallocate($img, rand(0, 256), rand(0, 256), rand(0, 256)); // Случайный цвет c изображения
+//            imagefilledellipse($img, rand(0, 200), rand(0, 50), 20, 20, $color1);
+//        }
+
+
+        if($results['logo'] != '' || !file_exists($results['logo']))
         {
             $manager = new ImageManager(array('driver' => 'gd'));
             $realpath = realpath($results['logo']);
@@ -196,27 +207,27 @@ class Profile extends Model
                     $location_y = 1;
                     break;
                 case 1:
-                    $image = $manager->make($realpath)->resize(25, 25);
+                    $image = $manager->make($realpath)->resize(30, 30);
                     $image->save('images/temp/'.$id.'temp.png', 100);
-                    $location_x = 174;
-                    $location_y = 24;
+                    $location_x = 169;
+                    $location_y = 19;
                     break;
                 case 2:
-                    $image = $manager->make($realpath)->resize(25, 25);
+                    $image = $manager->make($realpath)->resize(30, 30);
                     $image->save('images/temp/'.$id.'temp.png', 100);
                     $location_x = 1;
-                    $location_y = 24;
+                    $location_y = 19;
                     break;
                 case 3:
-                    $image = $manager->make($realpath)->resize(25, 25);
+                    $image = $manager->make($realpath)->resize(30, 30);
                     $image->save('images/temp/'.$id.'temp.png', 100);
                     $location_x = 1;
                     $location_y = 1;
                     break;
                 case 4:
-                    $image = $manager->make($realpath)->resize(25, 25);
+                    $image = $manager->make($realpath)->resize(30, 30);
                     $image->save('images/temp/'.$id.'temp.png', 100);
-                    $location_x = 174;
+                    $location_x = 169;
                     $location_y = 1;
                     break;
                 case 5:
@@ -258,17 +269,50 @@ class Profile extends Model
         $color = imagecolortransparent($img,$color);
         imageantialias($img, true);
         $nChars = iconv_strlen($results['company_code']);
-        $randStr = $results['company_code'];
-        $deltaX = 25; //Смещение по Х
-        $x = rand(20, 30);
-        $y = 40;
+        $randStr = strtolower($results['company_code']);
         $font = $results['font'];
+
+        if($nChars)
+        {
+            if($nChars <= 6)
+            {
+                $deltaX = 25; //Смещение по Х
+                $x = 20;
+                $y = 37;
+                $size = 35;//Размер шрифта
+
+            }
+            if($nChars <= 8 && $nChars > 6)
+            {
+                $deltaX = 23; //Смещение по Х
+                $x = 8;
+                $y = 35;
+                $size = 29;//Размер шрифта
+            }
+            if($nChars <= 10 && $nChars > 8)
+            {
+                $deltaX = 20; //Смещение по Х
+                $x = 5;
+                $y = 35;
+                $size = 21;//Размер шрифта
+            }
+
+        }
+
+
         for($i=0;$i<$nChars;$i++){
-            $size = rand(25,35);//Размер шрифта
-            $angle = -30 + rand(0,60);
+            $angle = rand(-10,-50) + rand(0,75);
             imagettftext($img, $size, $angle, $x, $y, $color, $font, $randStr{$i});
             $x+= $deltaX;
         }
+//линии ШУМЫ
+//        $linenum = rand(10, 15);
+//        for ($i=0; $i<$linenum; $i++)
+//        {
+//            $color = imagecolorallocate($img, rand(0, 256), rand(0, 256), rand(0, 256)); // Случайный цвет c изображения
+//            imageline($img, rand(0, 20), rand(20, 50), rand(190, 220), rand(1, 50), $color);
+//        }
+
         $manager = new ImageManager(array('driver' => 'gd'));
         $image = $manager->make($img);
         $path =  'images/company/'.$id.'.png';
